@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Automated Report Generation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+   <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Dark blue background for the page */
+        }
+        .slide {
+            display: none;
+            min-height: 550px;
+        }
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .highlight-box {
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.8); /* Violet color */
+            border-radius: 4px;
+        }
+        /* For the code block styling */
+        pre {
+            background-color: #1f2937; /* Gray-800 */
+            color: #d1d5db; /* Gray-300 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+        }
+        .code-comment { color: #9ca3af; } /* Gray-400 */
+        .code-keyword { color: #c084fc; } /* Purple-400 */
+        .code-string { color: #a5b4fc; } /* Indigo-300 */
+        .code-function { color: #67e8f9; } /* Cyan-300 */
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
+
+    <div class="w-full max-w-5xl mb-4 mt-16 flex justify-between items-start">
+        <a href="../index.html" class="text-white hover:underline">&larr; Back to Home</a>
+        <a href="../pages/report_2.html" class="text-white hover:underline">Skip to guide 2 &rarr;</a>
+      </div>
+
+    <div class="w-full max-w-5xl bg-white rounded-lg shadow-2xl overflow-hidden">
+        <div id="slides-container" class="p-8 sm:p-12">
+            <div class="slide active">
+                <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">The Guide to Automated Reporting</h1>
+                    <p class="text-xl md:text-2xl text-violet-600 font-semibold">Let Your Data Do the Work</p>
+                    <p class="mt-8 text-gray-800">Press 'Next' to start the course<br> Schroll down to see explaination of terms</br></p>
+
+                    <div class="mt-12">
+                        <svg class="w-24 h-24 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <p class="mt-8 text-gray-500">A Course by Automation Blueprint</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">The Pain of Manual Reporting</h2>
+                    <p class="text-xl text-gray-700 mb-6">Every week, it's the same story. You have to stop what you're doing to:</p>
+                    <ul class="list-disc list-inside space-y-4 text-lg text-gray-600">
+                        <li>Find and export the latest data from multiple sources.</li>
+                        <li>Copy and paste it all into a spreadsheet.</li>
+                        <li>Manually create charts and summaries.</li>
+                        <li>Save it as a PDF and email it to your team or boss.</li>
+                    </ul>
+                     <div class="bg-red-50 border-l-4 border-red-400 p-4 mt-8">
+                        <p class="font-semibold text-lg">This is time-consuming, repetitive, and a single copy-paste error can make the whole report wrong.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8">The Solution: Automation</h2>
+                    <p class="text-xl text-gray-700 mb-6">Automated reporting is about creating a system that does all that work <span class="font-semibold">for you</span>, on a schedule you define.</p>
+                    <div class="grid grid-cols-2 gap-6 text-lg">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 fa-2x"></i>
+                            <div><strong class="text-gray-800">Always On Time:</strong> Reports are sent exactly when they're needed (e.g., every Monday at 9 AM).</div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 fa-2x"></i>
+                            <div><strong class="text-gray-800">Always Accurate:</strong> The system pulls data directly from the source, eliminating human error.</div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                           <i class="fas fa-check-circle text-green-500 fa-2x"></i>
+                            <div><strong class="text-gray-800">Frees Up Your Time:</strong> You can focus on analyzing the data, not just compiling it.</div>
+                        </div>
+                         <div class="flex items-start space-x-3">
+                           <i class="fas fa-check-circle text-green-500 fa-2x"></i>
+                            <div><strong class="text-gray-800">Data-Driven Decisions:</strong> Consistent reports help everyone make better, more informed decisions.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                 <div class="flex-grow flex flex-col justify-center items-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">The Four Building Blocks</h2>
+                    <p class="text-xl text-gray-700 mb-8 text-center">Every automated report uses these four components:</p>
+                    <div class="flex items-center justify-center space-x-2 w-full font-semibold text-center">
+                        <div class="bg-gray-100 p-4 rounded-lg w-1/4">
+                             <i class="fas fa-database fa-2x mb-2 text-gray-700"></i><br>1. Data Source<br><span class="text-sm font-normal">(Where the info lives)</span>
+                        </div>
+                         <i class="fas fa-arrow-right fa-2x text-gray-400"></i>
+                        <div class="bg-gray-100 p-4 rounded-lg w-1/4">
+                             <i class="fas fa-file-invoice fa-2x mb-2 text-gray-700"></i><br>2. Report Template<br><span class="text-sm font-normal">(How the info looks)</span>
+                        </div>
+                        <i class="fas fa-arrow-right fa-2x text-gray-400"></i>
+                        <div class="bg-gray-100 p-4 rounded-lg w-1/4">
+                             <i class="fas fa-cogs fa-2x mb-2 text-gray-700"></i><br>3. Automation Engine<br><span class="text-sm font-normal">(The "worker" that runs it)</span>
+                        </div>
+                         <i class="fas fa-arrow-right fa-2x text-gray-400"></i>
+                        <div class="bg-gray-100 p-4 rounded-lg w-1/4">
+                             <i class="fas fa-paper-plane fa-2x mb-2 text-gray-700"></i><br>4. Destination<br><span class="text-sm font-normal">(Where the report goes)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <p class="text-xl text-gray-500 mb-4">Let's build one from scratch.</p>
+                    <h2 class="text-4xl font-bold text-gray-800">Technical Guide:</h2>
+                    <p class="text-2xl text-violet-600 mt-4">Automating a Weekly Report with Google Sheets</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 1: Set Up Your Data Source</h2>
+                    <p class="text-lg text-gray-700 mb-6">Create a Google Sheet. One tab will be for your raw data, named <span class="font-semibold">"Sales Data"</span>. This is where you or another system will add new sales information.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg border-2 border-gray-300">
+                        <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                            <rect x="0" y="0" width="400" height="150" rx="5" fill="#fff" stroke="#d1d5db"/>
+                            <rect x="0" y="0" width="400" height="25" fill="#f3f4f6"/>
+                            <text x="10" y="17" class="font-sans text-sm fill-gray-600">File Edit View Insert Format Data Tools Extensions Help</text>
+                            <rect x="0" y="25" width="400" height="25" fill="#fff" stroke-width="1" stroke="#d1d5db"/>
+                            <text x="10" y="42" class="font-sans font-bold text-sm fill-gray-800">Date</text>
+                            <text x="110" y="42" class="font-sans font-bold text-sm fill-gray-800">Product</text>
+                            <text x="260" y="42" class="font-sans font-bold text-sm fill-gray-800">Amount</text>
+                            <text x="10" y="62" class="font-mono text-sm fill-gray-600">2025-07-01</text>
+                            <text x="110" y="62" class="font-mono text-sm fill-gray-600">Basic Guide</text>
+                            <text x="260" y="62" class="font-mono text-sm fill-gray-600">$19.99</text>
+                             <text x="10" y="82" class="font-mono text-sm fill-gray-600">2025-07-01</text>
+                            <text x="110" y="82" class="font-mono text-sm fill-gray-600">Advanced Course</text>
+                            <text x="260" y="82" class="font-mono text-sm fill-gray-600">$99.00</text>
+                             <text x="10" y="102" class="font-mono text-sm fill-gray-600">2025-07-02</text>
+                            <text x="110" y="102" class="font-mono text-sm fill-gray-600">Pro Bundle</text>
+                            <text x="260" y="102" class="font-mono text-sm fill-gray-600">$149.00</text>
+                            <rect x="0" y="125" width="80" height="25" fill="#e2e8f0"/>
+                            <path d="M 80 125 C 85 125, 85 130, 90 130 L 90 150 L 0 150 L 0 125 Z" fill="#e2e8f0"/>
+                            <text x="10" y="142" class="font-sans font-semibold text-sm fill-green-700">Sales Data</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 2: Create the Report Template</h2>
+                    <p class="text-lg text-gray-700 mb-6">In the same Sheet, create a new tab named <span class="font-semibold">"Weekly Report"</span>. This tab uses formulas to automatically summarize the raw data into clean charts and tables.</p>
+                     <div class="bg-gray-100 p-4 rounded-lg border-2 border-gray-300">
+                       <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                            <rect x="0" y="0" width="400" height="200" rx="5" fill="#fff" stroke="#d1d5db"/>
+                             <text x="10" y="25" class="font-sans text-xl font-bold fill-gray-800">Weekly Sales Summary</text>
+                            <rect x="10" y="40" width="120" height="50" rx="5" fill="#f0fdf4"/>
+                            <text x="20" y="60" class="font-sans text-sm fill-gray-500">Total Revenue</text>
+                            <text x="20" y="80" class="font-sans text-2xl font-bold fill-green-600">$268.99</text>
+                            <rect x="140" y="40" width="120" height="50" rx="5" fill="#eff6ff"/>
+                            <text x="150" y="60" class="font-sans text-sm fill-gray-500">New Sales</text>
+                            <text x="150" y="80" class="font-sans text-2xl font-bold fill-blue-600">3</text>
+                             <text x="10" y="120" class="font-sans font-bold fill-gray-700">Sales by Product</text>
+                             <rect x="10" y="130" width="80" height="15" fill="#a5b4fc"/>
+                             <text x="95" y="142" class="font-sans text-sm fill-gray-600">Basic Guide</text>
+                             <rect x="10" y="150" width="180" height="15" fill="#a5b4fc"/>
+                             <text x="195" y="162" class="font-sans text-sm fill-gray-600">Advanced Course</text>
+                             <rect x="10" y="170" width="250" height="15" fill="#a5b4fc"/>
+                             <text x="265" y="182" class="font-sans text-sm fill-gray-600">Pro Bundle</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 3: Open the "Automation Engine"</h2>
+                    <p class="text-lg text-gray-700 mb-6">Google Sheets has a built-in automation engine called <span class="font-semibold">Apps Script</span>. To open it, click <span class="font-mono bg-gray-200 px-1 rounded">Extensions</span> &rarr; <span class="font-mono bg-gray-200 px-1 rounded">Apps Script</span>.</p>
+                    <div class="w-full bg-gray-50 border rounded-lg p-2 shadow-sm">
+                        <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                            <text x="10" y="25" class="font-sans text-sm fill-gray-600">File</text>
+                            <text x="40" y="25" class="font-sans text-sm fill-gray-600">Edit</text>
+                            <text x="75" y="25" class="font-sans text-sm fill-gray-600">View</text>
+                            <text x="110" y="25" class="font-sans text-sm fill-gray-600">Insert</text>
+                            <text x="155" y="25" class="font-sans text-sm fill-gray-600">Format</text>
+                            <text x="205" y="25" class="font-sans text-sm fill-gray-600">Data</text>
+                            <text x="245" y="25" class="font-sans text-sm fill-gray-600">Tools</text>
+                            <rect x="285" y="10" width="75" height="25" rx="4" fill="#f1f5f9"/>
+                            <text x="290" y="25" class="font-sans font-semibold text-sm fill-gray-900">Extensions</text>
+                            <rect x="290" y="38" width="100" height="20" rx="4" fill="#fff" class="highlight-box"/>
+                            <text x="300" y="52" class="font-sans font-semibold text-sm fill-violet-600">Apps Script</text>
+                        </svg>
+                    </div>
+                    <p class="text-lg text-gray-600 mt-4">This will open a new tab with a code editor. This is where we'll tell the computer what to do.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 4: Write the Automation Script</h2>
+                    <p class="text-lg text-gray-700 mb-6">Don't be intimidated! This is a simple set of instructions. Copy and paste this code into the editor. We'll explain it on the next slide.</p>
+                    <pre><code><span class="code-keyword">function</span> <span class="code-function">sendWeeklyReport</span>() {
+  <span class="code-comment">// Get the current spreadsheet</span>
+  <span class="code-keyword">const</span> ss = SpreadsheetApp.getActiveSpreadsheet();
+  
+  <span class="code-comment">// Get the specific sheet we want to send (our report template)</span>
+  <span class="code-keyword">const</span> reportSheet = ss.getSheetByName("Weekly Report");
+  
+  <span class="code-comment">// Define who gets the email and the subject line</span>
+  <span class="code-keyword">const</span> recipient = "boss@example.com";
+  <span class="code-keyword">const</span> subject = "Weekly Sales Report - " + <span class="code-keyword">new</span> Date().toLocaleDateString();
+  <span class="code-keyword">const</span> body = "Hi team,\n\nPlease find the weekly sales report attached.\n\nThanks!";
+
+  <span class="code-comment">// Create a PDF version of our report sheet</span>
+  <span class="code-keyword">const</span> pdf = reportSheet.getParent().getAs('application/pdf').setName(subject + '.pdf');
+
+  <span class="code-comment">// Send the email with the PDF attached</span>
+  MailApp.sendEmail(recipient, subject, body, {
+    attachments: [pdf]
+  });
+}</code></pre>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Breaking Down the Script (In Plain English)</h2>
+                     <ol class="list-decimal list-inside space-y-3 text-lg">
+                        <li><strong class="text-violet-700">Find the right file:</strong> The script first identifies the active Google Sheet.</li>
+                        <li><strong class="text-violet-700">Find the right tab:</strong> It then looks for the specific tab named "Weekly Report".</li>
+                        <li><strong class="text-violet-700">Prepare the email:</strong> It sets the recipient's email address, the subject line (with today's date), and the body message.</li>
+                        <li><strong class="text-violet-700">Create the PDF:</strong> This is the magic step. It takes the "Weekly Report" tab and converts it into a PDF file.</li>
+                        <li><strong class="text-violet-700">Send it off:</strong> Finally, it sends the email to the recipient with the newly created PDF attached.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 5: Set the Schedule (The Trigger)</h2>
+                    <p class="text-lg text-gray-700 mb-6">Now, tell the script <span class="font-semibold">when</span> to run. In the Apps Script editor, click the "Triggers" (clock) icon on the left, then "Add Trigger".</p>
+                     <div class="bg-gray-100 p-4 rounded-lg border-2 border-gray-300 highlight-box">
+                         <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                            <rect x="0" y="0" width="400" height="200" rx="5" fill="#fff" stroke="#d1d5db"/>
+                            <text x="10" y="25" class="font-sans text-lg font-bold fill-gray-800">Add Trigger for My Project</text>
+                            <rect x="0" y="35" width="400" height="1" fill="#d1d5db"/>
+                             <text x="10" y="60" class="font-sans text-sm font-semibold fill-gray-700">Choose which function to run</text>
+                            <rect x="10" y="70" width="380" height="20" rx="3" fill="#e5e7eb" stroke="#d1d5db"/>
+                            <text x="20" y="84" class="font-sans text-sm fill-gray-800">sendWeeklyReport</text>
+                             <text x="10" y="110" class="font-sans text-sm font-semibold fill-gray-700">Select event source</text>
+                            <rect x="10" y="120" width="185" height="20" rx="3" fill="#e5e7eb" stroke="#d1d5db"/>
+                             <text x="20" y="134" class="font-sans text-sm fill-gray-800">Time-driven</text>
+                             <text x="205" y="110" class="font-sans text-sm font-semibold fill-gray-700">Select type of time trigger</text>
+                             <rect x="205" y="120" width="185" height="20" rx="3" fill="#e5e7eb" stroke="#d1d5db"/>
+                             <text x="215" y="134" class="font-sans text-sm fill-gray-800">Week timer</text>
+                             <rect x="330" y="165" width="60" height="25" rx="5" fill="#8b5cf6"/>
+                             <text x="345" y="182" class="font-sans text-sm font-semibold fill-white">Save</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                 <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <h1 class="text-5xl font-bold text-gray-800 mb-8">Automation Complete!</h1>
+                    <p class="text-2xl text-gray-600 mb-8">Every Monday at 9 AM, without you lifting a finger, your boss will receive an email that looks like this:</p>
+                    <div class="w-full max-w-2xl bg-white border rounded-lg p-4 text-left shadow-lg">
+                        <p class="text-sm text-gray-500">To: boss@example.com</p>
+                        <p class="text-sm text-gray-500">From: you@example.com</p>
+                        <h3 class="text-lg font-bold mt-2">Subject: Weekly Sales Report - 7/8/2025</h3>
+                        <hr class="my-2">
+                        <p>Hi team,</p>
+                        <p>Please find the weekly sales report attached.</p>
+                        <p>Thanks!</p>
+                        <div class="mt-4 p-2 bg-gray-100 rounded-md flex items-center space-x-2">
+                            <i class="fas fa-file-pdf text-red-500"></i>
+                            <span class="text-sm font-semibold">Weekly Sales Report - 7/8/2025.pdf</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-gray-800 text-white p-4 flex items-center justify-between">
+            <button id="prevBtn" class="bg-gray-600 hover:bg-gray-500 rounded-lg px-4 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+            <div id="slide-counter" class="text-sm font-semibold">Slide 1 / 12</div>
+            <button id="nextBtn" class="bg-violet-600 hover:bg-violet-500 rounded-lg px-4 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+        </div>
+    </div>
+    <div class="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden" style="margin-top: 100px;">
+        <div class="p-8 sm:p-12">
+            
+            <h1 class="text-4xl font-bold text-gray-800 text-center">Explaination of terms</h1>
+            <p class="mt-4 text-lg text-gray-600 text-center">This guide explains the key terms from our more advanced courses. Use it to understand the building blocks of creating powerful, intelligent workflows.</p>
+            
+            <hr class="my-10">
+
+            <div class="space-y-8">
+                <h2 class="text-3xl font-bold text-violet-600 border-b pb-2">Automating Your Reports</h2>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Data Source</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> The original place where your raw information is stored. This could be a spreadsheet, a database, or an e-commerce platform like Shopify or Stripe.</p>
+                    <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> Your data source is the collection of ingredients for a recipe. It's all the raw material (sales numbers, customer names) you need before you can start "cooking" your report.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Report Template</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A pre-designed layout that organizes your raw data into a readable format with summaries, charts, and key takeaways.</p>
+                    <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> The template is your recipe card. It tells you exactly how to arrange the ingredients (the data) to create the final, delicious dish (the report).</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Google Apps Script</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A coding language based on JavaScript that is built into Google Workspace apps (like Sheets, Docs, and Gmail) to let you create custom automations.</p>
+                    <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> It's a set of "superpowers" for your Google apps. It's like a secret cheat code that lets you program Google Sheets to do new tricks it can't normally do, like automatically creating a PDF and emailing it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-10">
+            
+            <div class="space-y-8">
+                <h2 class="text-3xl font-bold text-orange-600 border-b pb-2">Building Smarter Workflows</h2>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">No-Code Automation Tool</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A platform (like Zapier or Make) that lets you connect different web apps and automate tasks using a visual interface, without writing any code.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> These tools are like digital LEGO sets for your apps. You can take a block from one app (like a new sale from Stripe) and connect it to a block from another app (like adding a row in Google Sheets) to build a custom creation.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Conditional Logic / Paths</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A way to create a "fork in the road" in your automation, allowing it to perform different actions based on specific "if/then" rules.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> It's a signpost at a fork in the road. The signpost is your condition (e.g., "IF the sale is over $50"). It tells the traffic (your data) whether to go down Path A (the VIP route) or Path B (the standard route).</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Mapping Data</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> The process of telling your automation exactly which piece of data from your trigger app should go into which field in your action app.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> It's like packing for a move. You take an item from a box in your old house (the trigger data, like "Customer Email") and place it in the correctly labeled box for your new house (the action field, also "Customer Email"). You're mapping "Kitchen Stuff" to the "Kitchen" box.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Tag (in Email Marketing)</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A label you apply to a subscriber to organize and segment your list. Unlike lists, a single subscriber can have multiple tags.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> A tag is a sticky note you put on a customer's file folder. All customers are in your filing cabinet (your list), but you might put a yellow "VIP" sticky note on some, and a blue "Bought Product A" sticky note on others. This makes it easy to find and talk to specific groups later.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const slideCounter = document.getElementById('slide-counter');
+
+            function showSlide(slideIndex) {
+                if (slideIndex < 0 || slideIndex >= totalSlides) return;
+                
+                currentSlide = slideIndex;
+                slides.forEach(s => s.classList.remove('active'));
+                slides[currentSlide].classList.add('active');
+                slideCounter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+                updateNavButtons();
+            }
+
+            function updateNavButtons() {
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) showSlide(currentSlide - 1);
+            }
+            
+            function handleKeyPress(event) {
+                if (event.key === 'ArrowRight') nextSlide();
+                else if (event.key === 'ArrowLeft') prevSlide();
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            document.addEventListener('keydown', handleKeyPress);
+
+            showSlide(0);
+        });
+    </script>
+
+</body>
+</html>

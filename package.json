@@ -1,0 +1,21 @@
+{
+  "name": "automation-blueprint-server",
+  "version": "1.0.0",
+  "description": "Server for Automation Blueprint, deployed as a Cloud Function.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "stripe": "^18.3.0",
+    "firebase-admin": "^13.4.0",
+    "firebase-functions": "^6.4.0"
+  }
+}

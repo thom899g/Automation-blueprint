@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Guide: Smart Conditional Workflows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+         body {
+             font-family: 'Inter', sans-serif;
+             background-color: #000000; /* Dark blue background for the page */
+         }
+        .slide {
+            display: none;
+            min-height: 550px;
+        }
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .highlight-box {
+            box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.8); /* Yellow/Gold color */
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
+
+    <div class="w-full max-w-5xl mb-4 mt-16 flex justify-between items-start">
+        <a href="../index.html" class="text-white hover:underline">&larr; Back to Home</a>
+        <a href="report_2.html" class="text-white hover:underline">&larr; Back to guide 2</a>
+          
+    </div>
+
+    <div class="w-full max-w-5xl bg-white rounded-lg shadow-2xl overflow-hidden">
+        <!-- Slides Container -->
+        <div id="slides-container" class="p-8 sm:p-12">
+            <!-- All slides are here -->
+
+            <!-- Slide 1: Title Slide -->
+            <div class="slide active">
+                <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">The Final Piece: Smart Workflows</h1>
+                    <p class="text-xl md:text-2xl text-yellow-600 font-semibold">Making Your Automations Intelligent</p>
+                    <div class="mt-12">
+                        <svg class="w-24 h-24 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l4 4m0 0l4 4m-4-4v18m-7-3a2 2 0 100-4 2 2 0 000 4zM3 12a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+                    </div>
+                    <p class="mt-8 text-gray-500">Part 3 of the Automation Series</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: The Limitation of Linear -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Where We Are Now: A Linear Path</h2>
+                    <p class="text-xl text-gray-700 mb-8 text-center">Our current system is powerful, but it treats every sale exactly the same.</p>
+                    <!-- SVG Illustration of linear flow -->
+                    <div class="w-full text-center font-semibold">
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="bg-indigo-100 p-4 rounded-lg">Stripe Sale</div>
+                            <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                            <div class="bg-orange-100 p-4 rounded-lg">Zapier</div>
+                            <i class="fas fa-long-arrow-alt-right text-gray-400"></i>
+                            <div class="bg-green-100 p-4 rounded-lg">Google Sheet</div>
+                        </div>
+                    </div>
+                    <p class="text-xl text-gray-700 mt-8">But what if you want to...?</p>
+                    <ul class="list-disc list-inside space-y-2 mt-4 text-lg">
+                        <li>Send a special thank you to customers who spend over $100?</li>
+                        <li>Add customers who buy "Product A" to a specific email list?</li>
+                        <li>Notify your support team about international orders?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 3: The Solution: Conditional Logic -->
+            <div class="slide">
+                 <div class="flex-grow flex flex-col justify-center items-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">The Solution: Conditional Logic</h2>
+                    <p class="text-xl text-gray-700 mb-8 text-center">We need to add a "fork in the road" to our automation. This is called <span class="font-semibold">Conditional Logic</span> or <span class="font-semibold">Paths</span>.</p>
+                    <!-- SVG Illustration of a forked path -->
+                    <div class="w-full text-center font-semibold">
+                        <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Start -->
+                            <circle cx="40" cy="75" r="15" fill="#6366f1"/>
+                            <text x="26" y="79" fill="white" class="text-sm">Sale</text>
+                            <!-- Main Path -->
+                            <path d="M55 75 H 100" stroke="#d1d5db" stroke-width="3"/>
+                            <!-- Fork -->
+                            <path d="M100 75 C 120 75, 130 55, 150 55 H 250" stroke="#d1d5db" stroke-width="3" fill="none"/>
+                            <path d="M100 75 C 120 75, 130 95, 150 95 H 250" stroke="#d1d5db" stroke-width="3" fill="none"/>
+                            <!-- Path A -->
+                            <rect x="250" y="40" width="40" height="30" rx="5" fill="#a7f3d0"/>
+                            <text x="170" y="40" class="text-xs fill-gray-600">If Sale > $100</text>
+                            <!-- Path B -->
+                            <rect x="250" y="80" width="40" height="30" rx="5" fill="#fde68a"/>
+                             <text x="170" y="120" class="text-xs fill-gray-600">If Sale <= $100</text>
+                        </svg>
+                    </div>
+                     <p class="text-lg text-gray-600 mt-4 text-center">The rule is simple: IF a condition is true, THEN go down Path A. Otherwise, go down Path B.</p>
+                </div>
+            </div>
+
+            <!-- Slide 4: Technical Guide Intro -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <p class="text-xl text-gray-500 mb-4">Let's build a smart Zap.</p>
+                    <h2 class="text-4xl font-bold text-gray-800">Technical Guide:</h2>
+                    <p class="text-2xl text-yellow-600 mt-4">Tagging VIP Customers Automatically</p>
+                </div>
+            </div>
+
+            <!-- Slide 5: The Goal & Tools -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Goal & Tools</h2>
+                    <p class="text-xl text-gray-700 mb-6 font-semibold">"If a customer spends more than $50, tag them as a 'VIP' in our email marketing tool."</p>
+                    <p class="text-lg text-gray-700 mb-6">We'll use the same tools as before, but add one more piece to the puzzle:</p>
+                     <div class="flex items-center justify-center space-x-4 w-full font-semibold text-center">
+                        <div class="bg-indigo-100 p-4 rounded-lg">Stripe</div>
+                        <i class="fas fa-plus text-gray-400"></i>
+                        <div class="bg-orange-100 p-4 rounded-lg">Zapier</div>
+                         <i class="fas fa-plus text-gray-400"></i>
+                        <div class="bg-green-100 p-4 rounded-lg">Google Sheets</div>
+                         <i class="fas fa-plus text-gray-400"></i>
+                         <div class="bg-red-100 p-4 rounded-lg">ConvertKit</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Step 1 - Edit Your Zap -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 1: Edit Your Existing Zap</h2>
+                    <p class="text-lg text-gray-700 mb-6">Go back to the Zap you created in the last guide. We don't need to change the Stripe trigger. Instead, click the small "+" icon <span class="font-semibold">between</span> your Trigger and your Action.</p>
+                    <!-- SVG Illustration of Zapier UI -->
+                    <div class="w-full bg-gray-100 p-6 rounded-lg border-2 border-gray-300">
+                        <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+                            <!-- Trigger -->
+                            <rect x="15" y="10" width="270" height="40" rx="5" fill="white" stroke="#d1d5db"/>
+                            <text x="25" y="35" class="font-semibold">1. Trigger: New Stripe Payment</text>
+                            <!-- The Plus Button to click -->
+                            <circle cx="150" cy="75" r="12" fill="#3b82f6" class="highlight-box cursor-pointer"/>
+                            <text x="144.9" y="79" fill="white" class="font-bold">+</text>
+                            <path d="M150 50 L 150 63" stroke="#d1d5db" stroke-width="2"/>
+                            <path d="M150 87 L 150 100" stroke="#d1d5db" stroke-width="2"/>
+                            <!-- Action -->
+                            <rect x="15" y="100" width="270" height="40" rx="5" fill="white" stroke="#d1d5db"/>
+                            <text x="25" y="125" class="font-semibold">2. Action: Create Google Sheet Row</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Step 2 - Add a Path -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 2: Add a "Path" Step</h2>
+                    <p class="text-lg text-gray-700 mb-6">Zapier will ask what kind of step to add. Search for and select <span class="font-semibold">"Paths"</span>. This will let you create the "fork in the road".</p>
+                    <div class="w-full bg-gray-100 p-4 rounded-lg border-2 border-gray-300 highlight-box">
+                        <svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" class="font-sans w-full">
+                            <rect x="0" y="0" width="300" height="100" rx="5" fill="#f9fafb"/>
+                            <text x="10" y="25" class="font-bold fill-gray-800">Choose app & event</text>
+                            <rect x="10" y="40" width="280" height="40" rx="5" fill="white" stroke="#d1d5db"/>
+                            <g transform="translate(20 52)">
+                                <path d="M0 0 h10 v10 h-10 z" stroke="#fbbf24" stroke-width="2" fill="none"/>
+                                <path d="M0 10 h10 v10 h-10 z" transform="rotate(45 6 16)" stroke="#fbbf24" stroke-width="2" fill="none"/>
+                            </g>
+                            <text x="50" y="65" class="font-semibold fill-gray-900">Paths</text>
+                        </svg>
+                    </div>
+                    <p class="text-lg text-gray-700 mt-4">You'll see two default paths created: Path A and Path B.</p>
+                </div>
+            </div>
+
+             <!-- Slide 8: Step 3 - Configure Path A -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 3: Set the Rule for Path A (The VIP Path)</h2>
+                    <p class="text-lg text-gray-700 mb-6">Click to edit Path A. We'll set up a rule that says: <span class="font-semibold">"Only continue if..."</span> the sale amount from Stripe is greater than 50.</p>
+                    <!-- SVG Illustration of Path Rule -->
+                    <div class="w-full bg-gray-100 p-4 rounded-lg border-2 border-gray-300 highlight-box">
+                        <svg viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+                            <text x="10" y="20" class="font-bold">Setup Rules for Path A</text>
+                            <rect x="10" y="40" width="120" height="30" rx="4" fill="#e0e7ff" stroke="#a5b4fc"/>
+                            <text x="20" y="60" class="font-semibold text-indigo-800">Amount</text>
+                            <rect x="140" y="40" width="120" height="30" rx="4" fill="#e0e7ff" stroke="#a5b4fc"/>
+                            <text x="143" y="60" class="font-semibold text-indigo-800" style="font-size: 0.7rem">(Number) Greater than</text>
+                             <rect x="270" y="40" width="120" height="30" rx="4" fill="#e0e7ff" stroke="#a5b4fc"/>
+                            <text x="280" y="60" class="font-semibold text-indigo-800">50</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Step 4 - Add an Action to Path A -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 4: Add an Action to Path A</h2>
+                    <p class="text-lg text-gray-700 mb-6">Now, inside Path A, add a new action step. Choose <span class="font-semibold">ConvertKit</span> as the app and <span class="font-semibold">"Tag a Subscriber"</span> as the event.</p>
+                    <div class="w-full bg-gray-100 p-6 rounded-lg border-2 border-gray-300">
+                        <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg" class="font-sans w-full">
+                           <rect x="0" y="0" width="300" height="120" rx="8" fill="#f3f4f6"/>
+                            <text x="15" y="25" class="font-bold text-lg fill-gray-800">Action in Path A</text>
+                            <rect x="15" y="40" width="270" height="60" rx="5" fill="white" stroke="#d1d5db" class="highlight-box"/>
+                            <circle cx="45" cy="70" r="12" fill="#ef4444"/>
+                            <text x="65" y="65" class="font-semibold fill-gray-800" style="font-size: 0.65rem;">ConvertKit</text>
+                            <text x="65" y="80" class="text-sm fill-gray-500">App</text>
+                            <path d="M140 55 L 140 85" stroke="#e5e7eb" stroke-width="1"/>
+                            <text x="150" y="65" class="font-semibold fill-gray-800" style="font-size: 0.65rem;">Tag a Subscriber</text>
+                            <text x="150" y="80" class="text-sm fill-gray-500">Event</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 5: Configure the Tag Action</h2>
+                    <p class="text-lg text-gray-700 mb-6">Map the customer's email from the Stripe data to the "Email" field. Then, in the "Tag" field, type in the name of your new tag, like <span class="font-mono bg-gray-200 px-1 rounded">VIP-Customer</span>.</p>
+                    <div class="w-full bg-gray-100 p-4 rounded-lg border-2 border-gray-300 highlight-box">
+                       <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" class="font-sans w-full">
+                           <text x="10" y="25" class="font-bold text-lg fill-gray-800">Setup Action</text>
+                           <text x="10" y="50" class="text-sm font-semibold fill-gray-700">Subscriber Email</text>
+                           <rect x="10" y="60" width="380" height="25" rx="4" fill="#fff" stroke="#d1d5db"/>
+                           <text x="20" y="77" class="text-sm fill-blue-600">1. Customer Email: jane@example.com</text>
+                           <text x="10" y="105" class="text-sm font-semibold fill-gray-700">Tag</text>
+                           <rect x="10" y="115" width="380" height="25" rx="4" fill="#fff" stroke="#d1d5db"/>
+                           <rect x="15" y="120" width="120" height="15" rx="7" fill="#fef9c3" stroke="#fde047"/>
+                           <text x="20" y="132" class="text-xs font-semibold fill-gray-800">VIP-Customer</text>
+                       </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 6: Configure Path B (The Default Path)</h2>
+                    <p class="text-lg text-gray-700 mb-6">Now, go back and edit Path B. This is the path for everyone else (sales of $50 or less). Inside it, simply add or move your original <span class="font-semibold">"Create Google Sheet Row"</span> action.</p>
+                    <div class="w-full bg-gray-100 p-4 rounded-lg border-2 border-gray-300">
+                        <svg viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" class="font-sans w-full">
+                            <text x="10" y="25" class="font-bold text-lg fill-gray-800">Path B</text>
+                             <rect x="10" y="40" width="280" height="40" rx="5" fill="white" stroke="#d1d5db"/>
+                             <path d="M23 52 h15 v15 h-15 z" fill="#16a34a"/>
+                             <text x="50" y="65" class="font-semibold">Action: Create Google Sheet Row</text>
+                        </svg>
+                    </div>
+                    <p class="text-lg text-gray-700 mt-4">You can add the "Create Google Sheet Row" action to Path A as well, so that ALL sales are recorded, but only VIPs get the tag.</p>
+                </div>
+            </div>
+
+            <!-- Slide 12: The Final Zap -->
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center items-center">
+                   <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Your Smart Workflow is Complete!</h2>
+                   <p class="text-xl text-gray-700 mb-8 text-center">Your final Zap now has intelligent branching logic.</p>
+                   <div class="w-full">
+                       <svg viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" class="font-sans text-sm font-semibold">
+                           <rect x="50" y="10" width="200" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1"/>
+                           <text x="100" y="30" fill="#475569">1. New Stripe Sale</text>
+                           <path d="M150 40 V 60" stroke="#cbd5e1" stroke-width="2"/>
+                           <rect x="50" y="60" width="200" height="30" rx="5" fill="#f1f5f9" stroke="#cbd5e1"/>
+                           <text x="120" y="80" fill="#475569">2. Paths</text>
+                           <path d="M100 90 V 110" stroke="#cbd5e1" stroke-width="2"/>
+                           <path d="M200 90 V 110" stroke="#cbd5e1" stroke-width="2"/>
+                           <path d="M100 110 H 200" stroke="#cbd5e1" stroke-width="2"/>
+                           <text x="50" y="125" fill="#475569">Path A (VIPs)</text>
+                           <rect x="25" y="130" width="150" height="30" rx="5" fill="#fecaca" stroke="#f87171"/>
+                           <text x="35" y="150" fill="#991b1b">Tag in ConvertKit</text>
+                           <path d="M100 160 V 180" stroke="#cbd5e1" stroke-width="2"/>
+                           <text x="155" y="125" fill="#475569">Path B (Others)</text>
+                            <rect x="145" y="130" width="150" height="30" rx="5" fill="#dbeafe" stroke="#93c5fd"/>
+                           <text x="155" y="150" fill="#1e3a8a">Add to Google Sheet</text>
+                            <path d="M200 160 V 180" stroke="#cbd5e1" stroke-width="2"/>
+                            <text x="30" y="200" class="font-bold text-base">All Paths Can Have Multiple Steps!</text>
+                       </svg>
+                   </div>
+               </div>
+           </div>
+
+           <div class="slide">
+               <div class="flex-grow flex flex-col justify-center">
+                   <h2 class="text-3xl font-bold text-gray-800 mb-6">The Power You've Unlocked</h2>
+                   <p class="text-xl text-gray-700 mb-6">With conditional logic, you can now create highly personalized experiences:</p>
+                   <ul class="list-disc list-inside space-y-4 text-lg text-gray-600">
+                       <li>Send a personalized thank you video to high-value customers.</li>
+                       <li>Add buyers of a specific product to a targeted upsell sequence.</li>
+                       <li>Send a text message to your phone for sales over $500.</li>
+                       <li>Notify your fulfillment team only when a physical product is sold.</li>
+                   </ul>
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-8">
+                       <p class="font-semibold text-lg">You are no longer treating every customer the same. This is the key to effective, modern marketing.</p>
+                   </div>
+               </div>
+           </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col items-center justify-center text-center">
+                   <h1 class="text-5xl font-bold text-gray-800 mb-8">You're an Automation Pro!</h1>
+                   <p class="text-2xl text-gray-600">You now have all the building blocks to create powerful, intelligent, and time-saving workflows.</p>
+                    <a href="../index.html"><p class="mt-8 text-yellow-600">What will you automate next?</p></a>
+               </div>
+           </div>
+
+       </div>
+
+       <div class="bg-gray-800 text-white p-4 flex items-center justify-between">
+           <button id="prevBtn" class="bg-gray-600 hover:bg-gray-500 rounded-lg px-4 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+           <div id="slide-counter" class="text-sm font-semibold">Slide 1 / 14</div>
+           <button id="nextBtn" class="bg-yellow-600 hover:bg-yellow-500 rounded-lg px-4 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+       </div>
+   </div>
+   <div class="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden" style="margin-top: 100px;">
+    <div class="p-8 sm:p-12">
+        
+        <h1 class="text-4xl font-bold text-gray-800 text-center">Explaination of terms</h1>
+        <p class="mt-4 text-lg text-gray-600 text-center">This guide explains the key terms from our more advanced courses. Use it to understand the building blocks of creating powerful, intelligent workflows.</p>
+        
+        <hr class="my-10">
+
+        <div class="space-y-8">
+            <h2 class="text-3xl font-bold text-violet-600 border-b pb-2">Automating Your Reports</h2>
+            
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800">Data Source</h3>
+                <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> The original place where your raw information is stored. This could be a spreadsheet, a database, or an e-commerce platform like Shopify or Stripe.</p>
+                <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                    <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> Your data source is the collection of ingredients for a recipe. It's all the raw material (sales numbers, customer names) you need before you can start "cooking" your report.</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800">Report Template</h3>
+                <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A pre-designed layout that organizes your raw data into a readable format with summaries, charts, and key takeaways.</p>
+                <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                    <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> The template is your recipe card. It tells you exactly how to arrange the ingredients (the data) to create the final, delicious dish (the report).</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800">Google Apps Script</h3>
+                <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A coding language based on JavaScript that is built into Google Workspace apps (like Sheets, Docs, and Gmail) to let you create custom automations.</p>
+                <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                    <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> It's a set of "superpowers" for your Google apps. It's like a secret cheat code that lets you program Google Sheets to do new tricks it can't normally do, like automatically creating a PDF and emailing it.</p>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-10">
+        
+        <div class="space-y-8">
+            <h2 class="text-3xl font-bold text-orange-600 border-b pb-2">Building Smarter Workflows</h2>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800">No-Code Automation Tool</h3>
+                <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A platform (like Zapier or Make) that lets you connect different web apps and automate tasks using a visual interface, without writing any code.</p>
+                <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                    <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> These tools are like digital LEGO sets for your apps. You can take a block from one app (like a new sale from Stripe) and connect it to a block from another app (like adding a row in Google Sheets) to build a custom creation.</p>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800">Conditional Logic / Paths</h3>
+                <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A way to create a "fork in the road" in your automation, allowing it to perform different actions based on specific "if/then" rules.</p>
+                <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                    <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> It's a signpost at a fork in the road. The signpost is your condition (e.g., "IF the sale is over $50"). It tells the traffic (your data) whether to go down Path A (the VIP route) or Path B (the standard route).</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800">Mapping Data</h3>
+                <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> The process of telling your automation exactly which piece of data from your trigger app should go into which field in your action app.</p>
+                <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                    <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> It's like packing for a move. You take an item from a box in your old house (the trigger data, like "Customer Email") and place it in the correctly labeled box for your new house (the action field, also "Customer Email"). You're mapping "Kitchen Stuff" to the "Kitchen" box.</p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800">Tag (in Email Marketing)</h3>
+                <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A label you apply to a subscriber to organize and segment your list. Unlike lists, a single subscriber can have multiple tags.</p>
+                <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                    <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> A tag is a sticky note you put on a customer's file folder. All customers are in your filing cabinet (your list), but you might put a yellow "VIP" sticky note on some, and a blue "Bought Product A" sticky note on others. This makes it easy to find and talk to specific groups later.</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+   <script>
+       document.addEventListener('DOMContentLoaded', () => {
+           let currentSlide = 0;
+           const slides = document.querySelectorAll('.slide');
+           const totalSlides = slides.length;
+           const nextBtn = document.getElementById('nextBtn');
+           const prevBtn = document.getElementById('prevBtn');
+           const slideCounter = document.getElementById('slide-counter');
+
+           function showSlide(slideIndex) {
+               if (slideIndex < 0 || slideIndex >= totalSlides) return;
+               
+               currentSlide = slideIndex;
+               slides.forEach(s => s.classList.remove('active'));
+               slides[currentSlide].classList.add('active');
+               slideCounter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+               updateNavButtons();
+           }
+
+           function updateNavButtons() {
+               prevBtn.disabled = currentSlide === 0;
+               nextBtn.disabled = currentSlide === totalSlides - 1;
+           }
+
+           function nextSlide() {
+               if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+           }
+
+           function prevSlide() {
+               if (currentSlide > 0) showSlide(currentSlide - 1);
+           }
+           
+           function handleKeyPress(event) {
+               if (event.key === 'ArrowRight') nextSlide();
+               else if (event.key === 'ArrowLeft') prevSlide();
+           }
+
+           nextBtn.addEventListener('click', nextSlide);
+           prevBtn.addEventListener('click', prevSlide);
+           document.addEventListener('keydown', handleKeyPress);
+
+           showSlide(0);
+       });
+   </script>
+
+</body>
+</html>

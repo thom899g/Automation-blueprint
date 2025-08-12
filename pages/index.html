@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Blueprint</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Your Custom Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Stripe Buy Button -->
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+
+    <style>
+        @keyframes rotation {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes counter-rotation {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+        .hero-spinner {
+            animation: rotation 15s linear infinite;
+        }
+        .icon-upright {
+            animation: counter-rotation 15s linear infinite;
+            display: inline-block; /* Ensures transform is applied correctly */
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.8); }
+        }
+        .glass-card:hover .icon-hover-animation {
+            animation: icon-bounce 0.6s ease-in-out;
+        }
+        @keyframes icon-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes sway {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(66, 153, 225, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(66, 153, 225, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(66, 153, 225, 0.5); }
+        }
+        .glow-on-hover:hover {
+            animation: glow 1.5s infinite alternate;
+        }
+        .glass-card {
+            animation: sway 8s ease-in-out infinite;
+        }
+        .glass-card:nth-child(odd) {
+            animation-delay: 0.5s;
+        }
+        .glass-card:nth-child(even) {
+            animation-delay: 1s;
+        }
+        .scroll-float-heading .char {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            white-space: pre; /* Preserve whitespace */
+        }
+    /* Animated List Styles */
+        .animated-list-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .animated-list-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body >
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/5 shadow-md sticky top-0 z-50 backdrop-blur-md border-b border-white/10 animate-sway">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="nav-link text-2xl font-bold text-white animate-sway" data-page="home">
+                <i class="fas fa-drafting-compass text-blue-400"></i>
+                Automation Blueprint
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-300 hover:text-white font-medium pb-2 border-b-2 border-transparent animate-sway" data-page="home">Home</a>
+                <a href="#about" class="nav-link text-gray-300 hover:text-white font-medium pb-2 border-b-2 border-transparent animate-sway" data-page="about">About Us</a>
+                <a href="#services" class="nav-link text-gray-300 hover:text-white font-medium pb-2 border-b-2 border-transparent animate-sway" data-page="services">Services</a>
+                <a href="#contact" class="nav-link text-gray-300 hover:text-white font-medium pb-2 border-b-2 border-transparent animate-sway" data-page="contact">Contact</a>
+                <a href="#" id="login-button" class="nav-link text-gray-300 hover:text-white font-medium pb-2 border-b-2 border-transparent animate-sway">Login</a>
+                <a href="#deals" class="nav-link bg-blue-600 px-6 py-2 rounded-full font-medium animate-sway" data-page="home" data-anchor="deals">Pricing</a>            
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800/80 backdrop-blur-md">
+            <a href="#home" class="nav-link block py-3 px-6 text-sm hover:bg-blue-900/50 animate-sway" data-page="home">Home</a>
+            <a href="#about" class="nav-link block py-3 px-6 text-sm hover:bg-blue-900/50 animate-sway" data-page="about">About Us</a>
+            <a href="#services" class="nav-link block py-3 px-6 text-sm hover:bg-blue-900/50 animate-sway" data-page="services">Services</a>
+            <a href="#contact" class="nav-link block py-3 px-6 text-sm hover:bg-blue-900/50 animate-sway" data-page="contact">Contact</a>
+            <a href="#deals" class="nav-link bg-blue-600 px-6 py-2 rounded-full font-medium animate-sway" data-page="home" data-anchor="deals">Pricing</a>        
+        </div>
+    </header>
+
+    <!-- Main Content Area (Pages will be loaded here) -->
+    <main id="main-content" class="container mx-auto px-6 py-12 flex-grow">
+        <!-- Page content will be injected by js/main.js -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 text-white mt-auto border-t border-white/10">
+        <div class="container mx-auto px-6 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- About Section -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Automation Blueprint</h3>
+                    <p class="text-gray-500">Your guide in software automation. We help businesses grow by automating their processes.</p>
+                </div>
+                <!-- Links -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-500 hover:text-blue-400 transition-colors duration-200 nav-link" data-page="about">About Us</a></li>
+                        <li><a href="#services" class="text-gray-500 hover:text-blue-400 transition-colors duration-200 nav-link" data-page="services">Services</a></li>
+                        <li><a href="#contact" class="text-gray-500 hover:text-blue-400 transition-colors duration-200 nav-link" data-page="contact">Contact</a></li>
+                        <li><a href="#deals" class="text-gray-500 hover:text-blue-400 transition-colors duration-200 nav-link"  data-page="home" data-anchor="deals">Pricing</a></li>                    
+                    </ul>
+                </div>
+                <!-- Contact -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Contact Us</h3>
+                    <p class="text-gray-500">Tulipanhaven, Aarhus<br>8200, Denmark</p>
+                    <p class="text-gray-500 mt-2">Email: contact@automationblueprint.com</p>
+                </div>
+                <!-- Social Media -->
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-white">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 animate-sway"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500">
+                <p>&copy; 2025 Automation Blueprint. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Your Custom JavaScript -->
+    <script src="js/main.js"></script>
+
+    <!-- Login/Register Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md">
+            <h2 id="modal-title" class="text-2xl font-bold text-white text-center mb-6">Login</h2>
+            <form id="auth-form">
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-300 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-500" required>
+                </div>
+                <button type="submit" id="auth-submit-button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-transform transform hover:scale-105">Login</button>
+            </form>
+            <p class="text-center text-gray-400 mt-4">
+                <a href="#" id="toggle-auth-mode" class="hover:text-white">Don't have an account? Register</a>
+            </p>
+            <button id="close-modal-button" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+        </div>
+    </div>
+</body>
+</html>

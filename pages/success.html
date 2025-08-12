@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center h-screen">
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-green-400 mb-4">Payment Successful!</h1>
+        <p class="text-lg text-gray-300 mb-8">You now have access to the courses.</p>
+        <a href="#home" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-transform transform hover:scale-105 nav-link" data-page="home">Go to Homepage</a>
+    </div>
+
+    <script>
+        // Set a flag in localStorage to indicate payment was successful
+        localStorage.setItem('payment_successful', 'true');
+
+        // Redirect to the homepage after a short delay
+        setTimeout(() => {
+            window.location.href = '/#home';
+        }, 3000);
+    </script>
+</body>
+</html>

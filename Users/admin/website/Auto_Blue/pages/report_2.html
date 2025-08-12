@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Automated Data Entry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+   <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000; /* Dark blue background for the page */
+        }
+        .slide {
+            display: none;
+            min-height: 550px;
+        }
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .highlight-box {
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.8); /* Orange color */
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
+
+    <div class="w-full max-w-5xl mb-4 mt-16 flex justify-between items-start">
+        <a href="../index.html" class="text-white hover:underline">&larr; Back to Home</a>
+        <a href="report_1.html" class="text-white hover:underline">&larr; Back to guide 1</a>
+        <a href="report_3.html" class="text-white hover:underline">Skip to guide 3 &rarr;</a>
+          
+    </div>
+
+    <div class="w-full max-w-5xl bg-white rounded-lg shadow-2xl overflow-hidden">
+        <div id="slides-container" class="p-8 sm:p-12">
+            <div class="slide active">
+                <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">The Missing Link: Automated Data Entry</h1>
+                    <p class="text-xl md:text-2xl text-orange-600 font-semibold">Get Your Sales Data on Autopilot</p>
+                    <div class="mt-12">
+                       <svg class="w-24 h-24 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    <p class="mt-8 text-gray-500">Part 2 of the Automation Series</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">The Pain of Manual Data Entry</h2>
+                    <p class="text-xl text-gray-700 mb-8 text-center">Your "New Sale!" email arrives... and the boring work begins.</p>
+                    <div class="w-full text-center">
+                        <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" class="inline-block">
+                            <g class="text-sm font-sans">
+                                <rect x="10" y="30" width="120" height="80" rx="5" fill="#f3f4f6"/>
+                                <rect x="10" y="30" width="120" height="15" rx="5" ry="5" fill="#d1d5db"/>
+                                <text x="20" y="55" fill="#4b5563">From: Store</text>
+                                <text x="20" y="70" fill="#1f2937" class="font-bold">New Sale! $49</text>
+                                <path d="M140 70 L 180 70" stroke="#f97316" stroke-width="2" stroke-dasharray="4 2"/>
+                                <text x="140" y="60" fill="#f97316" class="font-bold text-xs">Manual</text>
+                                <text x="135" y="90" fill="#f97316" class="font-bold" style="font-size: 0.6rem;">Copy/Paste</text>
+                                <rect x="190" y="10" width="200" height="120" rx="5" fill="#f3f4f6"/>
+                                <rect x="190" y="10" width="200" height="15" fill="#16a34a"/>
+                                <rect x="195" y="30" width="50" height="10" fill="#e5e7eb" class="highlight-box" stroke="#f97316" stroke-width="1.5"/>
+                                <rect x="250" y="30" width="60" height="10" fill="#e5e7eb"/>
+                                <rect x="315" y="30" width="40" height="10" fill="#e5e7eb"/>
+                                <rect x="195" y="45" width="50" height="10" fill="#e5e7eb"/>
+                                <rect x="250" y="45" width="60" height="10" fill="#e5e7eb"/>
+                                <rect x="315" y="45" width="40" height="10" fill="#e5e7eb"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="bg-red-50 border-l-4 border-red-400 p-4 mt-8">
+                        <p class="font-semibold text-lg">This is slow, boring, and a single typo can lead to incorrect reports.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                 <div class="flex-grow flex flex-col justify-center items-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Our Goal: A "Hands-Off" System</h2>
+                    <p class="text-xl text-gray-700 mb-8 text-center">We want data to flow from the source to the destination instantly, with zero manual input.</p>
+                    <div class="flex items-center justify-center space-x-4 w-full font-semibold text-center">
+                        <div class=" p-4 rounded-lg w-1/3">
+                             <i class="fas fa-credit-card fa-3x mb-2 text-indigo-600"></i><br>A Sale is Made<br><span class="text-sm font-normal">(e.g., on Stripe)</span>
+                        </div>
+                         <i class="fas fa-long-arrow-alt-right fa-3x text-orange-500"></i>
+                        <div class="p-4 rounded-lg w-1/3">
+                             <i class="fas fa-file-excel fa-3x mb-2 text-green-600"></i><br>Data Appears Instantly<br><span class="text-sm font-normal">(In Google Sheets)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">How? With a "Connector" Tool</h2>
+                    <p class="text-xl text-gray-700 mb-6">To make different apps talk to each other, we need a special "no-code" automation tool. These tools act like universal translators for web apps.</p>
+                    <div class="bg-orange-50 border-l-4 border-orange-400 p-4 mt-8">
+                        <p class="font-semibold text-lg">For this guide, we'll use <span class="font-bold">Zapier</span>, the most popular connector tool. The automations it creates are called "Zaps".</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <p class="text-xl text-gray-500 mb-4">Let's build a digital pipeline.</p>
+                    <h2 class="text-4xl font-bold text-gray-800">Technical Guide:</h2>
+                    <p class="text-2xl text-orange-600 mt-4">Connecting Stripe Sales to Google Sheets with Zapier</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 1: Set Up The Trigger</h2>
+                    <p class="text-lg text-gray-700 mb-6">In Zapier, create a new "Zap". For the trigger, choose the app (<span class="font-semibold">Stripe</span>) and the event (<span class="font-semibold">New Successful Payment</span>).</p>
+                    <div class="w-full bg-gray-100 p-6 rounded-lg border-2 border-gray-300">
+                        <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="0" width="300" height="120" rx="8" fill="#f3f4f6"/>
+                            <text x="15" y="25" class="font-bold text-lg fill-gray-800">1. Trigger</text>
+                            <rect x="15" y="40" width="270" height="60" rx="5" fill="white" stroke="#d1d5db"/>
+                            <circle cx="45" cy="70" r="12" fill="#635bff"/>
+                            <text x="65" y="65" class="font-semibold fill-gray-800" style="font-size: 0.65rem;">Stripe</text>
+                            <text x="65" y="80" class="text-sm fill-gray-500">App</text>
+                            <path d="M140 55 L 140 85" stroke="#e5e7eb" stroke-width="1"/>
+                            <text x="150" y="65" class="font-semibold fill-gray-800" style="font-size: 0.65rem;">New Successful Payment</text>
+                            <text x="150" y="80" class="text-sm fill-gray-500">Event</text>
+                        </svg>
+                    </div>
+                     <p class="text-lg text-gray-700 mt-4">Zapier will then ask you to securely connect your Stripe account. This one-time step gives it permission to see your sales data.</p>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 2: Test Your Trigger</h2>
+                    <p class="text-lg text-gray-700 mb-6">Zapier will pull in a recent successful payment from Stripe to confirm the connection works. This gives us sample data to use in the next steps.</p>
+                    <div class="w-full bg-gray-800 p-4 rounded-lg border-2 border-gray-600 font-mono text-sm text-gray-300">
+                        <p><span class="text-purple-400">Payment A</span> found successfully!</p>
+                        <p class="mt-2 text-gray-400">// Sample Data:</p>
+                        <p>{ amount: <span class="text-green-400">4999</span>,</p>
+                        <p class="ml-2">customer_email: "<span class="text-orange-300">jane.doe@example.com</span>",</p>
+                        <p class="ml-2">product_name: "<span class="text-orange-300">The Ultimate Guide</span>"</p>
+                        <p>}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 3: Set Up The Action</h2>
+                    <p class="text-lg text-gray-700 mb-6">Now, set up the second half. Choose the app (<span class="font-semibold">Google Sheets</span>) and the event (<span class="font-semibold">Create Spreadsheet Row</span>).</p>
+                    <div class="w-full bg-gray-100 p-6 rounded-lg border-2 border-gray-300">
+                        <svg viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="0" y="0" width="300" height="120" rx="8" fill="#f3f4f6"/>
+                            <text x="15" y="25" class="font-bold text-lg fill-gray-800">2. Action</text>
+                            <rect x="15" y="40" width="270" height="60" rx="5" fill="white" stroke="#d1d5db"/>
+                            <path d="M33 62 h15 v15 h-15 z" fill="#16a34a"/>
+                            <text x="65" y="65" class="font-semibold fill-gray-800" style="font-size: 0.65rem;">Google Sheets</text>
+                            <text x="65" y="80" class="text-sm fill-gray-500">App</text>
+                            <path d="M140 55 L 140 85" stroke="#e5e7eb" stroke-width="1"/>
+                            <text x="150" y="65" class="font-semibold fill-gray-800" style="font-size: 0.65rem;">Create Spreadsheet Row</text>
+                            <text x="150" y="80" class="text-sm fill-gray-500">Event</text>
+                        </svg>
+                    </div>
+                    <p class="text-lg text-gray-700 mt-4">You'll then connect your Google account and choose the specific spreadsheet and worksheet to update.</p>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 4: Map the Data Fields</h2>
+                    <p class="text-lg text-gray-700 mb-6">This is the most important part. Match the sample data from Stripe to the columns in your Google Sheet.</p>
+                    <div class="w-full highlight-box rounded-lg p-2">
+                         <svg viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg" class="font-sans">
+                            <text x="10" y="20" class="font-bold fill-gray-800">Your Sheet's Columns</text>
+                            <rect x="10" y="30" width="150" height="30" rx="5" fill="#f3f4f6"/>
+                            <text x="20" y="50" class="fill-gray-700">Customer Email:</text>
+                             <rect x="10" y="70" width="150" height="30" rx="5" fill="#f3f4f6"/>
+                            <text x="20" y="90" class="fill-gray-700">Product:</text>
+                             <rect x="10" y="110" width="150" height="30" rx="5" fill="#f3f4f6"/>
+                            <text x="20" y="130" class="fill-gray-700">Sale Amount:</text>
+
+                            <text x="240" y="20" class="font-bold fill-gray-800">Data from Stripe</text>
+                             <rect x="240" y="30" width="150" height="30" rx="5" fill="#e0e7ff"/>
+                            <text x="250" y="50" class="font-semibold fill-indigo-800">jane@example.com</text>
+                             <rect x="240" y="70" width="150" height="30" rx="5" fill="#e0e7ff"/>
+                            <text x="250" y="90" class="font-semibold fill-indigo-800">The Ultimate Guide</text>
+                             <rect x="240" y="110" width="150" height="30" rx="5" fill="#e0e7ff"/>
+                            <text x="250" y="130" class="font-semibold fill-indigo-800">4999</text>
+                            
+                            <path d="M165 45 Q 200 45 235 45" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+                            <path d="M165 85 Q 200 85 235 85" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+                            <path d="M165 125 Q 200 125 235 125" stroke="#f97316" stroke-width="2" fill="none" stroke-dasharray="3 3"/>
+                        </svg>
+                    </div>
+                     <p class="text-sm text-gray-500 mt-2">You're telling Zapier: "Put the Stripe 'Customer Email' into my 'Email' column," and so on.</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-1">Step 5: Test and Publish Your Zap</h2>
+                    <p class="text-lg text-gray-700 mb-6">Zapier will send your sample data to Google Sheets to confirm it works. Once you see the new row appear in your sheet, you're ready to publish!</p>
+                    <div class="bg-gray-800 text-white p-4 rounded-lg flex justify-between items-center">
+                        <div>
+                            <h4 class="text-xl font-bold">Stripe Sales to Google Sheet</h4>
+                            <p class="text-sm text-gray-300">Status: Off</p>
+                        </div>
+                        <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold text-lg py-3 px-6 rounded-lg highlight-box">Publish Zap</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="flex-grow flex flex-col justify-center items-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">The Complete Automation Picture</h2>
+                    <p class="text-xl text-gray-700 mb-8 text-center">By combining this guide and the last one, you now have a fully automated system:</p>
+                    <div class="space-y-4">
+                        <div class="bg-indigo-100 p-4 rounded-lg font-semibold text-center">1. Customer makes a purchase on Stripe.</div>
+                        <div class="text-center text-gray-400"><i class="fas fa-arrow-down"></i></div>
+                        <div class="bg-orange-100 p-4 rounded-lg font-semibold text-center">2. Zapier instantly creates a new row in Google Sheets.</div>
+                        <div class="text-center text-gray-400"><i class="fas fa-arrow-down"></i></div>
+                        <div class="bg-violet-100 p-4 rounded-lg font-semibold text-center">3. On schedule, your Google Apps Script generates a report from that sheet and emails it.</div>
+                    </div>
+                    <p class="text-lg font-semibold text-green-600 mt-8 text-center">Zero manual work required!</p>
+                </div>
+            </div>
+             
+             <div class="slide">
+                 <div class="flex-grow flex flex-col items-center justify-center text-center">
+                    <h1 class="text-5xl font-bold text-gray-800 mb-8">Data Entry Solved!</h1>
+                    <p class="text-2xl text-gray-600">You now have a reliable pipeline to get data from your apps into your reports automatically.</p>
+                     <p class="mt-8 text-orange-600">Questions? Feel free to ask!</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bg-gray-800 text-white p-4 flex items-center justify-between">
+            <button id="prevBtn" class="bg-gray-600 hover:bg-gray-500 rounded-lg px-4 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Previous</button>
+            <div id="slide-counter" class="text-sm font-semibold">Slide 1 / 12</div>
+            <button id="nextBtn" class="bg-orange-600 hover:bg-orange-500 rounded-lg px-4 py-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">Next</button>
+        </div>
+    </div>
+    <div class="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-2xl overflow-hidden" style="margin-top: 100px;">
+        <div class="p-8 sm:p-12">
+            
+            <h1 class="text-4xl font-bold text-gray-800 text-center">Explaination of terms</h1>
+            <p class="mt-4 text-lg text-gray-600 text-center">This guide explains the key terms from our more advanced courses. Use it to understand the building blocks of creating powerful, intelligent workflows.</p>
+            
+            <hr class="my-10">
+
+            <div class="space-y-8">
+                <h2 class="text-3xl font-bold text-violet-600 border-b pb-2">Automating Your Reports</h2>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Data Source</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> The original place where your raw information is stored. This could be a spreadsheet, a database, or an e-commerce platform like Shopify or Stripe.</p>
+                    <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> Your data source is the collection of ingredients for a recipe. It's all the raw material (sales numbers, customer names) you need before you can start "cooking" your report.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Report Template</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A pre-designed layout that organizes your raw data into a readable format with summaries, charts, and key takeaways.</p>
+                    <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> The template is your recipe card. It tells you exactly how to arrange the ingredients (the data) to create the final, delicious dish (the report).</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Google Apps Script</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A coding language based on JavaScript that is built into Google Workspace apps (like Sheets, Docs, and Gmail) to let you create custom automations.</p>
+                    <div class="mt-3 bg-violet-50 border-l-4 border-violet-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-violet-500"></i><strong class="font-semibold">Think of it like this:</strong> It's a set of "superpowers" for your Google apps. It's like a secret cheat code that lets you program Google Sheets to do new tricks it can't normally do, like automatically creating a PDF and emailing it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-10">
+            
+            <div class="space-y-8">
+                <h2 class="text-3xl font-bold text-orange-600 border-b pb-2">Building Smarter Workflows</h2>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">No-Code Automation Tool</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A platform (like Zapier or Make) that lets you connect different web apps and automate tasks using a visual interface, without writing any code.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> These tools are like digital LEGO sets for your apps. You can take a block from one app (like a new sale from Stripe) and connect it to a block from another app (like adding a row in Google Sheets) to build a custom creation.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Conditional Logic / Paths</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A way to create a "fork in the road" in your automation, allowing it to perform different actions based on specific "if/then" rules.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> It's a signpost at a fork in the road. The signpost is your condition (e.g., "IF the sale is over $50"). It tells the traffic (your data) whether to go down Path A (the VIP route) or Path B (the standard route).</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Mapping Data</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> The process of telling your automation exactly which piece of data from your trigger app should go into which field in your action app.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> It's like packing for a move. You take an item from a box in your old house (the trigger data, like "Customer Email") and place it in the correctly labeled box for your new house (the action field, also "Customer Email"). You're mapping "Kitchen Stuff" to the "Kitchen" box.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Tag (in Email Marketing)</h3>
+                    <p class="mt-2 text-lg text-gray-700"><strong class="text-gray-900">What it is:</strong> A label you apply to a subscriber to organize and segment your list. Unlike lists, a single subscriber can have multiple tags.</p>
+                    <div class="mt-3 bg-orange-50 border-l-4 border-orange-400 p-4 rounded-r-lg">
+                        <p class="text-lg"><i class="fas fa-lightbulb mr-2 text-orange-500"></i><strong class="font-semibold">Think of it like this:</strong> A tag is a sticky note you put on a customer's file folder. All customers are in your filing cabinet (your list), but you might put a yellow "VIP" sticky note on some, and a blue "Bought Product A" sticky note on others. This makes it easy to find and talk to specific groups later.</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.slide');
+            const totalSlides = slides.length;
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const slideCounter = document.getElementById('slide-counter');
+
+            function showSlide(slideIndex) {
+                if (slideIndex < 0 || slideIndex >= totalSlides) return;
+                
+                currentSlide = slideIndex;
+                slides.forEach(s => s.classList.remove('active'));
+                slides[currentSlide].classList.add('active');
+                slideCounter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
+                updateNavButtons();
+            }
+
+            function updateNavButtons() {
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+            }
+
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) showSlide(currentSlide - 1);
+            }
+            
+            function handleKeyPress(event) {
+                if (event.key === 'ArrowRight') nextSlide();
+                else if (event.key === 'ArrowLeft') prevSlide();
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            document.addEventListener('keydown', handleKeyPress);
+
+            showSlide(0);
+        });
+    </script>
+
+</body>
+</html>

@@ -5,19 +5,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const siteHeader = document.querySelector('header');
     const siteFooter = document.querySelector('footer');
 
-    // Course data can be externalized to a JSON file for better organization.
+    // Course data for display and linking
     const coursesData = [
-        { title: 'Course 1', price: '$29.99', image: '../img/img1.jpg', teaser: 'Teaser for course 1', stats: '10 Lessons' },
-        { title: 'Course 2', price: '$39.99', image: '../img/img2.jpg', teaser: 'Teaser for course 2', stats: '15 Lessons' },
-        { title: 'Course 3', price: '$49.99', image: '../img/img3.jpg', teaser: 'Teaser for course 3', stats: '20 Lessons' },
+        { title: 'Email Automation', page: 'email_1', image: 'img/email.png', stats: '10 Lessons' },
+        { title: 'Report Automation', page: 'report_1', image: 'img/report.png', stats: '15 Lessons' },
+        { title: 'Expense Management', page: 'expense_1', image: 'img/expense.png', stats: '20 Lessons' },
+        { title: 'Social Media', page: 'media_1', image: 'img/media.png', stats: '20 Lessons' },
     ];
 
-    const bundleData = {
-        title: 'Complete Course Bundle',
-        price: '$99.99',
-        description: 'Get access to all courses and save money!',
-        savings: '20%',
-    };
+    // Bundle data is commented out as it is not used in the free course model
+    // const bundleData = {
+    //     title: 'Complete Course Bundle',
+    //     price: 'free',
+    //     description: 'Get access to all courses!',
+    //     savings: '100%',
+    // };
 
     function setupScrollAnimation() {
         const coursesHeading = document.getElementById('courses-heading');
@@ -43,41 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const individualContainer = document.getElementById('individual-courses-container');
         const bundleContainer = document.getElementById('bundle-container');
     
-        if (!individualContainer || !bundleContainer) {
-            console.error("Course containers not found. Check your HTML for 'individual-courses-container' and 'bundle-container'.");
+        if (!individualContainer) {
+            console.error("Course container 'individual-courses-container' not found. Check your HTML.");
             return;
+        }
+
+        if (bundleContainer) {
+            bundleContainer.innerHTML = '';
         }
     
         individualContainer.innerHTML = '';
-        bundleContainer.innerHTML = '';
     
-        // Create and append the bundle card
-        const bundleCard = document.createElement('div');
-        bundleCard.className = 'bundle-card bg-gradient-to-br from-blue-600 to-indigo-600 p-8 md:p-12 rounded-xl cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/50 hover:-translate-y-2 relative overflow-hidden border border-gray-700/50';
-        bundleCard.innerHTML = `
-            <div class="absolute top-0 right-0 bg-green-400 text-white font-bold py-1 px-3 rounded-bl-lg">Save ${bundleData.savings}</div>
-            <div class="md:flex md:items-center md:gap-12">
-                <div class="md:w-1/2">
-                    <h3 class="text-4xl font-bold text-white">${bundleData.title}</h3>
-                    <p class="text-indigo-200 text-lg mt-4">${bundleData.description}</p>
-                </div>
-                <div class="md:w-1/2 mt-8 md:mt-0">
-                    <h4 class="font-semibold text-white text-lg mb-3">What's Included:</h4>
-                    <ul class="space-y-2">${coursesData.map(course => `
-                        <li class="flex items-center gap-3">
-                            <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            <span class="text-indigo-100">${course.title}</span>
-                        </li>`).join('')}
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-6">
-                <button class="get-bundle bg-white text-indigo-600 font-bold py-3 px-8 rounded-full transition-colors duration-300 hover:bg-gray-100">Get the Bundle for ${bundleData.price}</button>
-            </div>
-        `;
-        bundleContainer.appendChild(bundleCard);
-    
-        // Create and append individual course cards
         coursesData.forEach((course, index) => {
             const gradientClasses = ['glass-card', 'glass-card', 'glass-card', 'glass-card'];
             const courseCard = document.createElement('div');
@@ -92,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="p-6">
                     <div>
                         <span class="bg-gray-800 text-gray-300 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mb-2">${course.stats}</span>
-                        <p class="text-gray-300 text-base mb-3 line-clamp-1">${course.teaser}</p>
+                        <p class="text-gray-300 text-base mb-3 line-clamp-1">Explore the course content here.</p>
                     </div>
                     <div class="mt-4 flex space-x-2">
                         <button class="access-course bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded flex-1">Access Now</button>
@@ -106,11 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
             courseCard.addEventListener('mouseleave', () => courseCard.classList.remove('border-blue-500/50'));
             courseCard.addEventListener('click', (e) => {
                 if (e.target.closest('button')) return;
-                window.location.hash = `course&title=${encodeURIComponent(course.title)}`;
+                window.location.hash = `${course.page}`;
             });
             individualContainer.appendChild(courseCard);
         });
-        individualContainer.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'gap-6');
+        individualContainer.classList.add('grid', 'grid-cols-1', 'md:grid-cols-2', 'lg:grid-cols-3', 'gap-6');
     }
 
     function setupSlideNavigation() {
@@ -122,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nextBtn = document.getElementById('next');
         const prevBtn = document.getElementById('prev');
         const slideCounter = document.getElementById('progress-text');
+
         function showSlide(slideIndex) {
             if (slideIndex < 0 || slideIndex >= totalSlides) return;
             currentSlide = slideIndex;
@@ -130,16 +109,20 @@ document.addEventListener('DOMContentLoaded', function() {
             if (slideCounter) slideCounter.textContent = `Slide ${currentSlide + 1} / ${totalSlides}`;
             updateNavButtons();
         }
+
         function updateNavButtons() {
             if (prevBtn) prevBtn.disabled = currentSlide === 0;
             if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
         }
+
         const nextSlide = () => { if (currentSlide < totalSlides - 1) showSlide(currentSlide + 1); };
         const prevSlide = () => { if (currentSlide > 0) showSlide(currentSlide - 1); };
+
         const handleKeyPress = (e) => {
             if (e.key === 'ArrowRight') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
         };
+
         if (nextBtn) {
             nextBtn.removeEventListener('click', nextSlide);
             nextBtn.addEventListener('click', nextSlide);
@@ -150,9 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         document.removeEventListener('keydown', handleKeyPress);
         document.addEventListener('keydown', handleKeyPress);
-        setTimeout(() => {
-            showSlide(0);
-        }, 0);
+        
+        setTimeout(() => { showSlide(0); }, 0);
     }
 
     function cleanupDynamicResources() {
@@ -165,13 +147,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mainContent) {
             mainContent.innerHTML = `
                 <div class="text-center p-12 flex flex-col items-center justify-center min-h-[300px]">
-                    <img src="../img/logo.gif" alt="Loading..." class="w-24 h-24 mb-4">
+                    <img src="img/logo.gif" alt="Loading..." class="w-24 h-24 mb-4">
                     <p class="text-gray-400 text-lg">Loading content, please wait...</p>
                 </div>
             `;
         }
         try {
-            const fetchUrl = `../pages/${page}.html`;
+            const fetchUrl = `pages/${page}.html`;
             const response = await fetch(fetchUrl);
             if (!response.ok) throw new Error(`Could not load page. Status: ${response.status}`);
             const text = await response.text();
@@ -179,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const fetchedDoc = parser.parseFromString(text, 'text/html');
             mainContent.innerHTML = fetchedDoc.body.innerHTML;
             
-            const isCoursePage = page.includes('course');
+            const isCoursePage = coursesData.some(course => course.page === page);
 
             if (isCoursePage) {
                 if (siteHeader) siteHeader.style.display = 'none';
@@ -202,10 +184,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 if (page === 'home') {
                     document.body.style.backgroundColor = '#1a202c';
-                    document.body.style.setProperty('--overlay-opacity', '0.7');
                 } else if (page === 'faq') {
                     document.body.style.backgroundColor = '#1a202c';
-                    document.body.style.setProperty('--overlay-opacity', '0');
                     document.body.classList.add('no-overlay');
                     const questions = document.querySelectorAll('.question');
                     questions.forEach(question => {
@@ -218,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 } else {
                     document.body.style.backgroundColor = '#1a202c';
-                    document.body.style.setProperty('--overlay-opacity', '0');
                     document.body.classList.add('no-overlay');
                 }
             }
@@ -258,11 +237,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 setupScrollAnimation();
             } else if (page === 'about') {
                 setupScrollAnimation();
+            } else if (page === 'services') {
+                // Add any specific setup for the services page here
+            } else if (page === 'contact') {
+                // Add any specific setup for the contact page here
+            } else if (page === 'faq') {
+                const questions = document.querySelectorAll('.question');
+                questions.forEach(question => {
+                    question.addEventListener('click', function() {
+                        const answer = this.nextElementSibling;
+                        if (answer && answer.classList.contains('answer')) {
+                            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+                        }
+                    });
+                });
             }
+            
             if (anchor) {
                 const elementToScrollTo = document.getElementById(anchor);
                 if (elementToScrollTo) elementToScrollTo.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+
         } catch (error) {
             console.error('Load page error:', error);
             if (mainContent) mainContent.innerHTML = `<div class="text-center p-12 glass-card rounded-lg"><h2 class="text-2xl font-bold text-red-400">Error Loading Content</h2><p class="text-red-300 mt-2">The requested page could not be found or loaded: ${error.message}</p></div>`;
@@ -305,7 +300,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (mobileMenuButton) {
         mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     }
-
+    
+    // Core SPA routing logic
     function handleHashChange() {
         const hash = window.location.hash.substring(1);
         const params = new URLSearchParams(hash.replace(/&/g, "?"));
@@ -313,7 +309,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const anchor = params.get('anchor');
         loadPage(page, anchor);
     }
-
+    
     window.addEventListener('hashchange', handleHashChange);
-    handleHashChange(); // Initial page load
+    
+    // Initial page load
+    handleHashChange();
 });

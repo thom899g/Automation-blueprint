@@ -28,27 +28,44 @@
 
     <!-- Navigation Bar -->
     <nav class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-center md:justify-between items-center gap-4">
             <div class="text-2xl font-bold text-pink-500">Budget Buddy</div>
             <div>
                 <button id="lang-btn" class="bg-pink-500 text-white font-bold py-2 px-4 rounded-full hover:bg-pink-600 transition duration-300">Dansk</button>
-                <a href="https://buy.stripe.com/cNi3cvgqtfBX9yQh0m8IU08" class="bg-pink-500 text-white font-bold py-2 px-4 rounded-full hover:bg-pink-600 transition duration-300" data-key="buy_now">Buy Now</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Sektion -->
-    <header class="bg-cream-100 py-20">
+    <!-- Sådan Virker Det Sektion -->
+    <section class="bg-white py-20">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl font-bold text-gray-800 mb-4" data-key="hero_title">Get Your Finances in Style</h1>
-            <p class="text-xl text-gray-600 mb-8" data-key="hero_subtitle">Stop worrying about money and start achieving your dreams. Our digital budget planner makes saving fun and easy!</p>
-            <a href="https://buy.stripe.com/cNi3cvgqtfBX9yQh0m8IU08" class="bg-pink-500 text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-pink-600 transition duration-300" data-key="hero_cta"></a>
-            <div class="mt-10">
-                <img src="img/budget-uk_1.png" alt="Budget Planner " class="mx-auto rounded-lg shadow-lg">
-                <p class="text-sm text-gray-500 mt-4" data-key="disclaimer"></p>
+            <h2 class="text-4xl font-bold text-gray-800 mb-12" data-key="how_it_works_title">How It Works</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
+                <div class="flex flex-col items-center">
+                    <div class="bg-pink-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">1</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-4" data-key="step1_title">Buy & Download</h3>
+                </div>
+                <div class="text-2xl text-pink-500">&rarr;</div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-pink-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">2</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-4" data-key="step2_title">Open in excel</h3>
+                </div>
+                <div class="text-2xl text-pink-500">&rarr;</div>
+                <div class="flex flex-col items-center">
+                    <div class="bg-pink-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">3</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mt-4" data-key="step3_title">Start your budget journey!</h3>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center text-gray-800 mb-12" data-key="products_title">Our Budget Planners</h2>
+            <div id="product-container" class="grid grid-cols-1 md:grid-cols-2 gap-12"></div>
+        </div>
+    </section>
 
     <!-- Feature Sektion -->
     <section class="py-20">
@@ -79,29 +96,6 @@
         </div>
     </section>
 
-    <!-- Sådan Virker Det Sektion -->
-    <section class="bg-white py-20">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold text-gray-800 mb-12" data-key="how_it_works_title">How It Works</h2>
-            <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12">
-                <div class="flex flex-col items-center">
-                    <div class="bg-pink-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">1</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-4" data-key="step1_title">Buy & Download</h3>
-                </div>
-                <div class="text-2xl text-pink-500">&rarr;</div>
-                <div class="flex flex-col items-center">
-                    <div class="bg-pink-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">2</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-4" data-key="step2_title">Open in excel</h3>
-                </div>
-                <div class="text-2xl text-pink-500">&rarr;</div>
-                <div class="flex flex-col items-center">
-                    <div class="bg-pink-500 text-white rounded-full h-16 w-16 flex items-center justify-center text-2xl font-bold">3</div>
-                    <h3 class="text-2xl font-bold text-gray-800 mt-4" data-key="step3_title">Start your budget journey!</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-6 text-center">
@@ -114,13 +108,45 @@
     </footer>
 
     <script>
+        const products = [
+            {
+                id: 'full_year',
+                version: 'V1',
+                deal: 'M12',
+                price_en: '$4.99',
+                price_da: '$4.99',
+                buy_link: 'https://buy.stripe.com/cNi3cvgqtfBX9yQh0m8IU08'
+            },
+            {
+                id: 'single_sheet',
+                version: 'V1',
+                deal: 'M1',
+                price_en: '$3.99',
+                price_da: '$3.99',
+                buy_link: 'https://buy.stripe.com/00w4gz8Y1dtPh1i4dA8IU0a'
+            },
+            {
+                id: 'single_sheet_v2',
+                version: 'V2',
+                deal: 'M1',
+                price_en: '$3.99',
+                price_da: '$3.99',
+                buy_link: 'https://buy.stripe.com/28E7sL0rv9dzbGY6lI8IU09'
+            }
+        ];
+
         const translations = {
             en: {
+                products_title: "Our Budget Planners",
                 buy_now: "Buy Now",
-                hero_title: "Get Your Finances in Style",
-                hero_subtitle: "Stop worrying about money and start achieving your dreams. Our digital budget planner makes saving fun and easy!",
-                hero_cta: "Buy Now for only $4.99!",
-                disclaimer: "Only works with Excel. The deal includes every month and you get both the Danish and English version.",
+                buy_now_for_only: "for only",
+                full_year_title: "The Full Year Planner",
+                full_year_desc: "Our comprehensive 12-month budget planner. Get a full overview of your finances, track your spending with visual graphs, set savings goals, and manage your bills. Includes both Danish and English versions.",
+                single_sheet_title: "The Single Month Planner",
+                single_sheet_desc: "A simple and effective single month budget planner. Perfect for getting a quick overview of your finances for a single month. Includes both Danish and English versions.",
+                single_sheet_v2_title: "The Single Month Planner",
+                single_sheet_v2_desc: "A simple and effective single month budget planner. Perfect for getting a quick overview of your finances for a single month. Includes both Danish and English versions.",
+                disclaimer: "Only works with Excel. The deal includes both the Danish and English version.",
                 features_title: "What Do You Get?",
                 feature1_title: "Full Overview",
                 feature1_text: "Full overview of income and expenses.",
@@ -139,11 +165,16 @@
                 footer_copyright: "&copy; 2025 Budget Buddy. All rights reserved.",
             },
             da: {
+                products_title: "Vores Budget Planlægger",
                 buy_now: "Køb Nu",
-                hero_title: "Få Styr På Din Økonomi Med Stil",
-                hero_subtitle: "Stop med at bekymre dig om penge og start med at nå dine drømme. Vores digitale budgetplanner gør det nemt og sjovt at spare op!",
-                hero_cta: "Køb Nu for kun 35 kr!",
-                disclaimer: "Virker kun med Excel. Aftalen indeholder alle måneder, og du får både den danske og den engelske version.",
+                buy_now_for_only: "for kun",
+                full_year_title: "Fulde Årsplan",
+                full_year_desc: "Vores omfattende 12-måneders budgetplanlægger. Få et fuldt overblik over din økonomi, følg dit forbrug med visuelle grafer, sæt opsparingsmål og administrer dine regninger. Inkluderer både den danske og engelske version.",
+                single_sheet_title: "Enkelt Månedsplan",
+                single_sheet_desc: "En simpel og effektiv enkelt måneds budgetplanlægger. Perfekt til at få et hurtigt overblik over din økonomi for en enkelt måned. Inkluderer både den danske og engelske version.",
+                single_sheet_v2_title: "Enkelt Månedsplan",
+                single_sheet_v2_desc: "En simpel og effektiv enkelt måneds budgetplanlægger. Perfekt til at få et hurtigt overblik over din økonomi for en enkelt måned. Inkluderer både den danske og engelske version.",
+                disclaimer: "Virker kun med Excel. Aftalen indeholder både den danske og den engelske version.",
                 features_title: "Hvad Får Du?",
                 feature1_title: "Fuld oversigt",
                 feature1_text: "Fuld oversigt over indkomst og udgifter.",
@@ -163,8 +194,69 @@
             }
         };
 
+        const productContainer = document.getElementById('product-container');
         const langBtn = document.getElementById('lang-btn');
         let currentLang = 'en';
+
+        const renderProducts = (lang) => {
+            productContainer.innerHTML = '';
+            const fullYearProduct = products.find(p => p.id === 'full_year');
+            const singleSheetProducts = products.filter(p => p.id.startsWith('single_sheet'));
+
+            // Render full year product
+            if (fullYearProduct) {
+                const price = lang === 'en' ? fullYearProduct.price_en : fullYearProduct.price_da;
+                const langCode = lang === 'en' ? 'us' : 'dk';
+                const image = `img/budget-${langCode}_${fullYearProduct.version}_${fullYearProduct.deal}.png`;
+                const titleKey = `${fullYearProduct.id}_title`;
+                const descKey = `${fullYearProduct.id}_desc`;
+
+                const productHTML = `
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4" data-key="${titleKey}">${translations[lang][titleKey]}</h3>
+                        <img src="${image}" alt="${translations[lang][titleKey]}" class="mx-auto rounded-lg shadow-lg mb-4">
+                        <p class="text-gray-600 mb-4" data-key="${descKey}">${translations[lang][descKey]}</p>
+                        <div>
+                            <a href="${fullYearProduct.buy_link}" class="bg-pink-500 text-white font-bold py-3 px-6 rounded-full hover:bg-pink-600 transition duration-300">${translations[lang].buy_now} ${translations[lang].buy_now_for_only} ${price}!</a>
+                            <p class="text-sm text-gray-500 mt-4" data-key="disclaimer">${translations[lang].disclaimer}</p>
+                        </div>
+                    </div>
+                `;
+                productContainer.innerHTML += productHTML;
+            }
+
+            // Render single sheet products
+            if (singleSheetProducts.length > 0) {
+                const singleSheetContainer = document.createElement('div');
+                singleSheetContainer.className = 'bg-white p-8 rounded-lg shadow-lg text-center relative group';
+
+                const titleKey = 'single_sheet_title';
+                const descKey = 'single_sheet_desc';
+
+                singleSheetContainer.innerHTML = `
+                    <div class="absolute top-0 right-0 bg-pink-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg animate-pulse">New!</div>
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4" data-key="${titleKey}">${translations[lang][titleKey]}</h3>
+                    <p class="text-gray-600 mb-4" data-key="${descKey}">${translations[lang][descKey]}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        ${singleSheetProducts.map(product => {
+                            const price = lang === 'en' ? product.price_en : product.price_da;
+                            const langCode = lang === 'en' ? 'us' : 'dk';
+                            const image = `img/budget-${langCode}_${product.version}_${product.deal}.png`;
+                            return `
+                                <div>
+                                    <img src="${image}" alt="${translations[lang][titleKey]}" class="mx-auto rounded-lg shadow-lg mb-4">
+                                    <div>
+                                        <a href="${product.buy_link}" class="bg-pink-500 text-white font-bold py-3 px-6 rounded-full hover:bg-pink-600 transition duration-300">${price}</a>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                    <p class="text-sm text-gray-500 mt-4" data-key="disclaimer">${translations[lang].disclaimer}</p>
+                `;
+                productContainer.appendChild(singleSheetContainer);
+            }
+        };
 
         const setLanguage = (lang) => {
             document.documentElement.lang = lang;
@@ -174,6 +266,7 @@
                     element.innerHTML = translations[lang][key];
                 }
             });
+            renderProducts(lang);
             langBtn.textContent = lang === 'en' ? 'Dansk' : 'English';
             currentLang = lang;
         };
